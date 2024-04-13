@@ -8,11 +8,28 @@ const app = new Hono<{
   }
 }>();
 
-app.post('/api/v1/user/signup', (c) => {
+app.post('/api/v1/user/signup', async (c) => {
 
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
+
+  const body = await c.req.json();
+
+  try {
+    await prisma.user.create({
+      data: {
+        email: body.email,
+        password: body.password,
+        name: body.name,
+      }
+    });
+    return c.text("Signed Up!");
+  } catch(error) {
+      c.status(411);
+      return c.text('Username already exists!')
+
+  }
 
   return c.text('Hello Hono!')
 })
