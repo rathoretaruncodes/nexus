@@ -1,19 +1,40 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
+import { decode, verify } from "hono/jwt";
 
 
 export const postRouter = new Hono<{
     Bindings: {
       DATABASE_URL: string;
       JWT_SECRET: string;
+    },
+    Variables: {
+      userId: string;
     }
   }>();
 
   //Middleware for auth
   //Here id is extracted from jwt and passed on to the route handlers' authorId
-  postRouter.use("/*", (c, next) => {
-    next();
+  postRouter.use("/*", async (c, next) => {
+    const authHeader = c.req.header("authorization") || "";
+    try {
+      const user = verify(authHeader, c.env.JWT_SECRET);
+        if (user) {
+          c.set("userId", user.id);
+          await next();
+        } else {
+          c.status(403);
+          return c.json({
+            message: " Your are not logged in."
+          })
+        }
+      } catch(error) {
+        c.status(403);
+        return c.json({
+          message: "You are not logged in."
+        })
+      }
   })
 
   postRouter.post('/', async (c) => {
@@ -23,11 +44,14 @@ export const postRouter = new Hono<{
 
     const body = await c.req.json();
 
+    const authorId = c.get("userId");
+
     const post = await prisma.post.create({
         data: {
             title: body.title,
             content: body.content,
-            authorId: '1',
+            author: body.author,
+            authorId: authorId,
         }
     })
 
