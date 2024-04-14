@@ -19,6 +19,7 @@ export const postRouter = new Hono<{
   postRouter.use("/*", async (c, next) => {
     const authHeader = c.req.header("authorization") || "";
     
+    try {
       const user = await verify(authHeader, c.env.JWT_SECRET);
         if (user) {
           c.set("userId", user.id);
@@ -26,9 +27,15 @@ export const postRouter = new Hono<{
         } else {
           c.status(403);
           return c.json({
-            message: " Your are not logged in."
+            message: "You are not logged in."
           })
         }
+    } catch(error) {
+      c.status(403);
+      return c.json({
+        message: "You are not logged in."
+      })
+    }
   })
 
   postRouter.post('/', async (c) => {
