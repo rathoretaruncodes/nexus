@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { createPostInput, updatePostInput } from "@rathoretaruncodes/nexus-common";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
 
@@ -44,6 +45,15 @@ export const postRouter = new Hono<{
     }).$extends(withAccelerate())
 
     const body = await c.req.json();
+
+    const { success } = createPostInput.safeParse(body);
+    if(!success) {
+      c.status(411);
+      return c.json({
+        message: "Inputs are incorrect"
+      })
+    }
+
     const authorId = c.get("userId");
     const post = await prisma.post.create({
         data: {
@@ -63,6 +73,15 @@ export const postRouter = new Hono<{
     }).$extends(withAccelerate())
 
     const body = await c.req.json();
+
+    const { success } = updatePostInput.safeParse(body);
+    if(!success) {
+      c.status(411);
+      return c.json({
+        message: "Inputs are incorrect"
+      })
+    }
+
     const post = await prisma.post.update({
       where: {
         id: body.id

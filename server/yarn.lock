@@ -238,6 +238,13 @@
   dependencies:
     "@prisma/debug" "5.12.1"
 
+"@rathoretaruncodes/nexus-common@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@rathoretaruncodes/nexus-common/-/nexus-common-1.0.0.tgz#9476acb2c5c89b7ff0272bc56dbddaea171fde62"
+  integrity sha512-B2TmehWa/Ud1w15QU6nO0cMZEAkoxBaUxGWZQPn//QAo+7FpKdQjCE/++O1zvDvZxjlI7D5f6vbXfXDwKGy+8g==
+  dependencies:
+    zod "^3.22.4"
+
 "@types/json-schema@^7.0.15":
   version "7.0.15"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
@@ -459,7 +466,7 @@ hasown@^2.0.0:
   dependencies:
     function-bind "^1.1.2"
 
-hono@^4.2.3:
+hono@4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/hono/-/hono-4.2.3.tgz#a7b6cb1a24e9841f6486935ea177a51b60a19a36"
   integrity sha512-yZDnPOp/XzjIB7KUWaOxwLSywnhxMvAKth8hfKhWQiWXeZhBfC6GlFnEst/FOOgn7rSWjShhQPS89PLEuHxq3Q==
