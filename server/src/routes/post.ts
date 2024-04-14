@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
-import { jwt, verify } from "hono/jwt";
+import { verify } from "hono/jwt";
 
 
 export const postRouter = new Hono<{
