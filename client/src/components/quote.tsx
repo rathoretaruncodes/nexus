@@ -11,7 +11,7 @@ const Quote = () => {
                     and beyond to address my concerns."
                     </p>.
                     <p className="font-bold text-xl">Jules Winnfield</p>
-                    <p className="font-light text-xl">CEO, Acme Inc</p>
+                    <p className="font-light text-slate-400 text-xl">CEO, Acme Inc</p>
                 </div>
            </div>
         </div>
