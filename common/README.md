@@ -15,7 +15,7 @@ This approach effectively eliminates the need for duplicate type declarations, s
 
 - Zod as dependency.
 - Works in Node.js and all modern browsers.
-- Tiny: 14.8kb
+- Tiny: 16kb
 
 
 
