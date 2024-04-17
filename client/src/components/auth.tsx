@@ -1,7 +1,9 @@
 import { ChangeEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SignupInput } from "@rathoretaruncodes/nexus-common";
 import { useState } from "react";
+import axios from "axios";
+import { SERVER_URL } from "../config";
 
 interface LabelledInputType {
     label: string;
@@ -22,12 +24,24 @@ function LabelledInput({label, placeholder, type, onChange}:LabelledInputType ) 
 
 
 const Auth = ({ type }: {type: "signup" | "signin"}) => {
+    const navigate = useNavigate();
 
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: '',
         email: '',
         password:''
     });
+
+    const sendRequest = async () => {
+        try {
+            const response = await axios.post(`${SERVER_URL}/api/v1/user/${type ==="signup" ? "signup": "signin" }`, postInputs);
+            const jwt = response.data;
+            localStorage.setItem("token", jwt);
+            navigate("/blogs");
+        } catch (error) {
+            //alert
+        }
+    }
 
 
     return (
@@ -40,17 +54,17 @@ const Auth = ({ type }: {type: "signup" | "signin"}) => {
                         </div>
                         <div className="text-2xl text-slate-400 font-light mt-4 text-center">
                             {type === "signin" ? "Don't have an account?" : "Already have an account?"}
-                            <Link className="underline" to={type === "signin" ? "/signup" : "/signin"}>
+                            <Link className="underline pl-2" to={type === "signin" ? "/signup" : "/signin"}>
                                 {type === "signin" ? "Sign up" : "Sign in"}
                             </Link>
                         </div>
                     </div>
-                    <LabelledInput label="Name" placeholder="John Doe" onChange={(e) => {
+                    {type === "signup" ? <LabelledInput label="Name" placeholder="John Doe" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,             //Give me all the existing keys in postInputs
                             name: e.target.value       //Then overwrite name key
                         })
-                    }} />
+                    }} /> : null}
                     <LabelledInput label="Email" placeholder="johndoe@email.com" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,             //Give me all the existing keys in postInputs
@@ -63,7 +77,7 @@ const Auth = ({ type }: {type: "signup" | "signin"}) => {
                             password: e.target.value       //Then overwrite name key
                         })
                     }} />
-                    <button type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-7">{type === "signup" ? "Sign up" : "Sign in"}</button>
+                    <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-7">{type === "signup" ? "Sign up" : "Sign in"}</button>
                 </div>
             </div>
         </div>
