@@ -1,15 +1,11 @@
 import Auth from "../components/auth";
 import Quote from "../components/quote";
 
-interface Signup{
-
-}
-
-const Signup:React.FC<Signup> = () => {
+const Signup = () => {
     return (
         <div className="grid grid-cols-2">
             <div>
-                <Auth />
+                <Auth type="signup" />
             </div>
             <div className="invisible lg:visible">
                 <Quote />
