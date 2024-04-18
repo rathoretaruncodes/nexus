@@ -33,15 +33,17 @@ userRouter.post('/signup', async (c) => {
           password: body.password,
           name: body.name,
         }
-      });
+      })
       const jwt = await sign({
         id: user.id
       }, c.env.JWT_SECRET);
   
-      return c.text(jwt);
+      return c.json({
+        jwt
+      });
     } catch(error) {
         c.status(411);
-        return c.text('User with the mentioned email already exist! Try using some other email address.')
+        return c.text('Signup failed!')
     }
   })
   
@@ -74,7 +76,9 @@ userRouter.post('/signup', async (c) => {
       const jwt = await sign({
         id: user.id
       }, c.env.JWT_SECRET)
-      return c.text(jwt);
+      return c.json({
+        jwt
+      })
     } catch(error) {
       c.status(411)
       return c.text('Invalid');
