@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SignupInput } from "@rathoretaruncodes/nexus-common";
+import { SigninInput} from "@rathoretaruncodes/nexus-common";
 import { useState } from "react";
 import axios from "axios";
 import { SERVER_URL } from "../config";
@@ -12,29 +12,28 @@ interface LabelledInputType {
     onChange: (e:ChangeEvent<HTMLInputElement>) => void;
 }
 
-function LabelledInput({label, placeholder, type, onChange}:LabelledInputType ) {
+function LabelledInput({label, placeholder, onChange}:LabelledInputType ) {
     return (
         <div>
             <label  className="block mb-2 text-sm font-bold text-gray-900 pt-5">{label}</label>
-            <input onChange={onChange} type={type || "text"} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required />
+            <input onChange={onChange} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required />
         </div>
         
     )
 }
 
 
-const Auth = ({ type }: {type: "signup" | "signin"}) => {
+const SigninAuth = () => {
     const navigate = useNavigate();
 
-    const [postInputs, setPostInputs] = useState<SignupInput>({
-        name: '',
+    const [postInputs, setPostInputs] = useState<SigninInput>({
         email: '',
         password:''
     });
 
     const sendRequest = async () => {
         try {
-            const response = await axios.post(`${SERVER_URL}/api/v1/user/${type ==="signup" ? "signup": "signin" }`, postInputs);
+            const response = await axios.post(`${SERVER_URL}/api/v1/user/signin`, postInputs);
             const jwt = response.data;
             localStorage.setItem("token", jwt);
             navigate("/blogs");
@@ -50,21 +49,15 @@ const Auth = ({ type }: {type: "signup" | "signin"}) => {
                 <div>
                     <div className="px-10 pb-8">
                         <div className="text-5xl font-extrabold mt-4">
-                            {type === "signup" ? "Create an Account" : "Welcome to Nexus!"}
+                            Welcome to Nexus!
                         </div>
                         <div className="text-2xl text-slate-400 font-light mt-4 text-center">
-                            {type === "signin" ? "Don't have an account?" : "Already have an account?"}
-                            <Link className="underline pl-2" to={type === "signin" ? "/signup" : "/signin"}>
-                                {type === "signin" ? "Sign up" : "Sign in"}
+                            Don't have an account?
+                            <Link className="underline pl-2" to={"/signup"}>
+                                Sign up
                             </Link>
                         </div>
                     </div>
-                    {type === "signup" ? <LabelledInput label="Name" placeholder="John Doe" onChange={(e) => {
-                        setPostInputs({
-                            ...postInputs,             //Give me all the existing keys in postInputs
-                            name: e.target.value       //Then overwrite name key
-                        })
-                    }} /> : null}
                     <LabelledInput label="Email" placeholder="johndoe@email.com" onChange={(e) => {
                         setPostInputs({
                             ...postInputs,             //Give me all the existing keys in postInputs
@@ -77,11 +70,11 @@ const Auth = ({ type }: {type: "signup" | "signin"}) => {
                             password: e.target.value       //Then overwrite name key
                         })
                     }} />
-                    <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-7">{type === "signup" ? "Sign up" : "Sign in"}</button>
+                    <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-7">Sign in</button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default Auth;
+export default SigninAuth;
