@@ -1,2 +1,2 @@
 
-export const SERVER_URL= "https://nexus.rathoretaruncodes.workers.dev/"
+export const SERVER_URL= "https://nexus.rathoretaruncodes.workers.dev"

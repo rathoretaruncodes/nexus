@@ -39,7 +39,7 @@ const SignupAuth = () => {
             localStorage.setItem("token", jwt);
             navigate("/blogs");
         } catch (error) {
-            //alert
+            alert("Error while signing up");
         }
     }
 
@@ -61,20 +61,20 @@ const SignupAuth = () => {
                     </div>
                     <LabelledInput label="Name" placeholder="John Doe" onChange={(e) => {
                         setPostInputs({
-                            ...postInputs,             //Give me all the existing keys in postInputs
-                            name: e.target.value       //Then overwrite name key
+                            ...postInputs,             
+                            name: e.target.value       
                         })
                     }} />
                     <LabelledInput label="Email" placeholder="johndoe@email.com" onChange={(e) => {
                         setPostInputs({
-                            ...postInputs,             //Give me all the existing keys in postInputs
-                            email: e.target.value       //Then overwrite name key
+                            ...postInputs,             
+                            email: e.target.value       
                         })
                     }} />
                     <LabelledInput label="Password" type={"password"}  onChange={(e) => {
                         setPostInputs({
-                            ...postInputs,             //Give me all the existing keys in postInputs
-                            password: e.target.value       //Then overwrite name key
+                            ...postInputs,             
+                            password: e.target.value       
                         })
                     }} />
                     <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-7">Sign up</button>
