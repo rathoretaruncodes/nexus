@@ -1,3 +1,4 @@
+import Avatar from "./avatar";
 
 interface PostCardProps {
     authorName: string;
@@ -14,7 +15,7 @@ export const PostCard:React.FC<PostCardProps> = ({
 }) => {
     return (
         <div className="px-16 my-4 rounded-lg hover:shadow-xl">
-            <div className="flex flex-row my-3">
+            <div className="flex flex-row my-3 items-center">
                 <div className="mr-2">
                     <Avatar name={authorName} />
                 </div>
@@ -36,12 +37,4 @@ export const PostCard:React.FC<PostCardProps> = ({
             </div>
         </div>
     )
-
-    function Avatar({ name }: { name: string}) {
-        return (
-            <div className="relative inline-flex items-center justify-center w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                <span className="font-medium text-gray-600 dark:text-gray-300">{name[0]}</span>
-            </div>
-        )
-    }
 }
