@@ -130,6 +130,15 @@ export const postRouter = new Hono<{
         where: {
           id: id
         },
+        select: {
+          title: true,
+          content: true,
+          author: {
+            select: {
+              name: true
+            }
+          }
+        }
       })
       return c.json({
         post
