@@ -36,7 +36,7 @@ const SignupAuth = () => {
         try {
             const response = await axios.post(`${SERVER_URL}/api/v1/user/signup`, postInputs);
             const jwt = response.data;
-            localStorage.setItem("token", jwt);
+            localStorage.setItem("token", JSON.stringify(jwt));
             navigate("/posts");
         } catch (error) {
             alert("Error while signing up");
