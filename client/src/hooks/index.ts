@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "../config";
 
-interface PostProp {
+export interface PostProp {
     "content": string,
     "title": string,
     "id": number,

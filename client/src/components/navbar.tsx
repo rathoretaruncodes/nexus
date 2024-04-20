@@ -7,7 +7,8 @@ const Navbar = () => {
                 nexus
             </div>
             <div>
-                <Avatar name="Tarun Rathore" />
+                {/* <Avatar name="Tarun Rathore" /> */}
+                <Avatar />
             </div>
 
         </div>

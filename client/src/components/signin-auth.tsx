@@ -38,7 +38,7 @@ const SigninAuth = () => {
             localStorage.setItem("token", jwt);
             navigate("/posts");
         } catch (error) {
-            //alert
+            alert("Error while signing in");
         }
     }
 

@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import Avatar from "./avatar";
 
 interface PostCardProps {
+    id:number;
     authorName: string;
     title: string;
     content: string;
@@ -8,16 +10,19 @@ interface PostCardProps {
 }
 
 export const PostCard:React.FC<PostCardProps> = ({
+    id,
     authorName,
     title,
     content,
     publishedDate
 }) => {
     return (
+        <Link to={`/post/${id}`} >
         <div className="px-16 my-4 rounded-lg hover:shadow-xl">
             <div className="flex flex-row my-3 items-center">
                 <div className="mr-2">
-                    <Avatar name={authorName} />
+                    {/* <Avatar name={authorName} /> */}
+                    <Avatar />
                 </div>
                 <div className="pr-2">
                     {authorName}  
@@ -36,5 +41,6 @@ export const PostCard:React.FC<PostCardProps> = ({
                 {`${Math.ceil(content.length / 200)} min read`}
             </div>
         </div>
+        </Link>
     )
 }

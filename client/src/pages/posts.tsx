@@ -20,6 +20,7 @@ const Posts = () => {
             <div className="flex flex-col justify-center items-center mt-10">
                 {posts.map((post) => (
                     <PostCard 
+                    id={post.id}
                     authorName={post.author.name || "Anonymous"} 
                     title={post.title} 
                     content={post.content} 
