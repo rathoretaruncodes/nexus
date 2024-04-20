@@ -19,11 +19,11 @@ export const usePosts = () => {
         axios.get(`${SERVER_URL}/api/v1/post/bulk`, {
             method: "GET",
             headers: {
-                Authorization: "Bearer" + localStorage.getItem("token")
+                Authorization:localStorage.getItem("token")
             }
         })
             .then(response => {
-                setPosts(response.data.post);
+                setPosts(response.data.posts);
                 setLoading(false);
             })
             .catch(error => {
