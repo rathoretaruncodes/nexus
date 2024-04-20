@@ -21,7 +21,7 @@ const Post = () => {
     return (
         <div>
             <Navbar />
-            <PostPage />
+            <PostPage post={post} />
         </div>
     )
 }
