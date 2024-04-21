@@ -1,16 +1,21 @@
 import Navbar from "../components/navbar";
 import { PostCard } from "../components/post-card";
+import { Spinner } from "../components/spinner";
 import { usePosts } from "../hooks";
 
 
 const Posts = () => {
     const {loading, posts} = usePosts();
 
-    if(loading) {
+    if(!loading) {
         return (
             <div>
                 <Navbar />
-                ...loading
+                <div className="h-screen flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <Spinner />
+                    </div>
+                </div>
             </div>
         )
     }

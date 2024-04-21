@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { usePost } from "../hooks";
 import { PostPage } from "../components/post-page";
+import { Spinner } from "../components/spinner";
 
 
 const Post = () => {
@@ -13,7 +14,11 @@ const Post = () => {
         return (
             <div>
                 <Navbar />
-                ...loading
+                <div className="h-screen flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <Spinner />
+                    </div>
+                </div>
             </div>
         )
     }
