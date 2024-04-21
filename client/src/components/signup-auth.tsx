@@ -15,8 +15,8 @@ interface LabelledInputType {
 function LabelledInput({label, placeholder, onChange}:LabelledInputType ) {
     return (
         <div>
-            <label  className="block mb-2 text-sm font-bold text-gray-900 pt-5">{label}</label>
-            <input onChange={onChange} id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required />
+            <label  className="block mb-2 text-sm font-bold text-purple-900 pt-5">{label}</label>
+            <input onChange={onChange} id="first_name" className="bg-gray-50 border border-purple-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder={placeholder} required />
         </div>
         
     )
@@ -49,10 +49,10 @@ const SignupAuth = () => {
             <div className="flex justify-center">
                 <div>
                     <div className="px-10 pb-8">
-                        <div className="text-5xl font-extrabold mt-4">
+                        <div className="text-5xl font-extrabold mt-4 text-purple-900">
                             Create an Account
                         </div>
-                        <div className="text-2xl text-slate-400 font-light mt-4 text-center">
+                        <div className="text-2xl text-purple-400 font-light mt-4 text-center">
                             Already have an account?
                             <Link className="underline pl-2" to={"/signin"}>
                                 Sign in
@@ -77,7 +77,7 @@ const SignupAuth = () => {
                             password: e.target.value       
                         })
                     }} />
-                    <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-7">Sign up</button>
+                    <button onClick={sendRequest} type="button" className="text-white bg-purple-800 hover:bg-purple-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 w-full mt-7">Sign up</button>
                 </div>
             </div>
         </div>
