@@ -17,7 +17,7 @@ const Posts = () => {
     return (
         <div>
             <Navbar />
-            <div className="flex flex-col justify-center items-center mt-10">
+            <div className="flex flex-col justify-center mt-10 items-start">
                 {posts.map((post) => (
                     <PostCard 
                     id={post.id}

@@ -34,8 +34,8 @@ export const PostCard:React.FC<PostCardProps> = ({
                 <div className="text-3xl font-bold mb-2">
                     {title}
                 </div>
-                <div className="text-2xl font-normal">
-                    {content.slice(0, 100) + "..."}
+                <div className="text-2xl font-normal min-w-11/12">
+                    {content.slice(0, 320) + "..."}
                 </div>
                 <div className="text-slate-500 text-xl font-thin my-7">
                     {`${Math.ceil(content.length / 200)} min read`}
