@@ -7,7 +7,7 @@ import { usePosts } from "../hooks";
 const Posts = () => {
     const {loading, posts} = usePosts();
 
-    if(!loading) {
+    if(loading) {
         return (
             <div>
                 <Navbar />
