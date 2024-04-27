@@ -16,8 +16,8 @@ Features
 Tech Stack
 ----------
 
--   Frontend: React, Tailwind CSS, TypeScript.
--   Backend: Hono (Cloudflare Workers), Node.js.
+-   Client-side: React, Tailwind CSS, TypeScript.
+-   Server-side: Hono (Cloudflare Workers), Node.js.
 -   ORM: Prisma for data modeling and connection pooling.
 -   Database: PostgreSQL.
 -   Authentication: JWT for secure user authentication.
@@ -30,8 +30,8 @@ To set up and run nexus on your local machine, follow these steps:
 
 1.  Clone the repository:
 
-    `git clone https://github.com/rathoretaruncodes/nexus.git
-    cd nexus`
+    `git clone https://github.com/rathoretaruncodes/nexus.git`
+    `cd nexus`
 
 2.  Install dependencies:
 
@@ -48,11 +48,11 @@ To set up and run nexus on your local machine, follow these steps:
 
 5.  Run the application:
 
-    -   Frontend: Start the frontend development server:
+    -   Client: Start the frontend development server:
 
         `yarn dev`
 
-    -   Backend: Start the backend server:
+    -   Server: Start the backend server:
 
         `yarn dev`
 
@@ -67,12 +67,12 @@ Project Structure
 
 The project is organized as follows:
 
--   /src: Contains the source code for the frontend and backend.
-    -   /frontend: Contains the React app with Tailwind CSS styling.
-    -   /backend: Contains the Hono server code and Prisma ORM setup.
+-   /src: Contains the source code for the client and server.
+    -   /client: Contains the React app with Tailwind CSS styling.
+    -   /server: Contains the Hono server code and Prisma ORM setup.
 -   /prisma: Contains Prisma schema and migration files.
--   /public: Contains static assets for the frontend app.
--   /common: Contains shared code between the frontend and backend.
+-   /public: Contains static assets for the client side app.
+-   /common: Contains shared code between the client and server.
 -   .env: Environment variables file.
 -   .gitignore: Specifies files and directories to be ignored in version control.
 
